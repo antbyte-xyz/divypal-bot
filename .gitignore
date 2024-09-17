@@ -1,1 +1,5 @@
 .env
+members.json
+expenses.json
+venv/
+__pycache__/

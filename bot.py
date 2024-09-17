@@ -14,7 +14,7 @@ from commands.show_expenses import show_expenses
 
 # Load environment variables from .env file
 load_dotenv()
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 # Enable logging
 logging.basicConfig(
@@ -25,7 +25,7 @@ logging.basicConfig(
 def main() -> None:
     """Start the bot."""
     # Create the Application and pass it your bot's token.
-    application = Application.builder().token(BOT_TOKEN).build()
+    application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
     # Add command handlers
     application.add_handler(CommandHandler("help", help))
