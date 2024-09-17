@@ -3,12 +3,14 @@ from datetime import datetime
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from data import expenses, members
+from data import *
 from models.Expense import Expense
 
 
 async def add_expense(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle the /add_expense command"""
+    members = load_members()
+    expenses = load_expenses()
     username = update.effective_user.username
     print(username, members)
 
@@ -49,6 +51,8 @@ async def add_expense(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
         expenses[username] = []
     expenses[username].extend(expense_details)
 
+    save_members(members=members)
+    save_expenses(expenses=expenses)
     await update.message.reply_text(
         f"Expenses recorded:\n" + "\n".join(str(exp) for exp in expense_details) +
         f"\nTotal amount: {total_amount}\nEach member owes:{split_amount:.2f}"

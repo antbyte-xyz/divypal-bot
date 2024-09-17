@@ -3,11 +3,12 @@ from collections import defaultdict
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from data import expenses
+from data import *
 
 
 async def show_expenses(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle the /show_expenses command"""
+    expenses = load_expenses()
     if not expenses:
         await update.message.reply_text("No expenses recorded yet.")
         return
