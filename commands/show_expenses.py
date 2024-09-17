@@ -29,7 +29,7 @@ async def show_expenses(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
                 total_member_expenses += exp.price
             member_summary.append("")  # Add a blank line after each date
 
-        member_summary.append(f"Total: {total_member_expenses:.2f}")
+        member_summary.append(f"Total: ৳{total_member_expenses:.2f}")
         expense_summary.append("\n".join(member_summary))
 
     await update.message.reply_text("Recorded Expenses:\n" + "\n\n".join(expense_summary))
