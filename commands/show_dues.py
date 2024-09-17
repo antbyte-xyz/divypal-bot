@@ -20,6 +20,6 @@ async def show_dues(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
     for member, due in total_due.items():
-        dues_summary.append(f"{member}: {'gets' if due < 0 else 'owes'} {abs(due):.2f}")
+        dues_summary.append(f"😎 {member}: {'gets' if due < 0 else 'owes'} {abs(due):.2f}")
 
     await update.message.reply_text("\n".join(dues_summary))
