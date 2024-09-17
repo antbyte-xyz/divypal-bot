@@ -8,6 +8,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+RUN useradd -m myuser
+USER myuser
+
+RUN mkdir -p /app/data && chown -R myuser:myuser /app
+
 ENV PYTHONUNBUFFERED=1
 
 CMD ["python", "bot.py"]
