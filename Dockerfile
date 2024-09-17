@@ -9,9 +9,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 RUN useradd -m myuser
-USER myuser
 
 RUN mkdir -p /app/data && chown -R myuser:myuser /app
+
+USER myuser
 
 ENV PYTHONUNBUFFERED=1
 
