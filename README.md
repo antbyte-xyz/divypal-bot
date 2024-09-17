@@ -1,4 +1,12 @@
-# Telegram Expense Tracker Bot
+---
+title: Divypal
+emoji: 💸
+colorFrom: purple
+colorTo: blue
+sdk: docker
+pinned: false
+---
+# Divypal
 
 This Telegram bot helps users track shared expenses within a group. It allows members to add expenses, view balances, and manage group members.
 
