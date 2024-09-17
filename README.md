@@ -16,7 +16,7 @@ This Telegram bot helps users track shared expenses within a group. It allows me
 - Python 3.11+
 - Required packages are listed in the `requirements.txt` file
 
-## Installation and Usage
+## Installation
 
 1. Clone this repository
 2. Install the required packages:
@@ -24,9 +24,19 @@ This Telegram bot helps users track shared expenses within a group. It allows me
 ```bash
 pip install -r requirements.txt
 ```
-
 3. Run the bot:
 
 ```bash
 python bot.py
 ```
+## Usage
+
+Start a chat with the bot on Telegram and use the following commands:
+
+- `/help` - Show details about all commands
+- `/members` - Show all members in the expense tracking group
+- `/members add @username` - Add a new member to the expense tracking group
+- `/members remove @username` - Remove a member from the expense tracking group
+- `/addx <item> <price>` - Add a new expense
+- `/showx` - View current balances for all members
+- `/settleup @username` - Settle up balances with other members
