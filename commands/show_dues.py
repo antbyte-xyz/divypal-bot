@@ -2,11 +2,10 @@ from collections import defaultdict
 
 from telegram import Update
 from telegram.ext import ContextTypes
-from data import *
+from data import load_expenses
 
 
 async def show_dues(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Handle the /dues command"""
     expenses = load_expenses()
     dues_summary = []
     total_due = defaultdict(int)
