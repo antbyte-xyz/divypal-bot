@@ -94,8 +94,8 @@ def generate_expense_report(expenses):
     elements.append(Paragraph("Summary", styles['Heading2']))
     elements.append(Spacer(1, 0.1*inch))
 
-    total_dues = calculate_dues(expenses)
-    num_users = len(total_dues)
+    dues_summary = calculate_dues(expenses)
+    num_users = len(dues_summary)
     per_head_amount = total_spent / num_users
 
     summary_data = [
@@ -136,10 +136,10 @@ def generate_expense_report(expenses):
     elements.append(Spacer(1, 0.2*inch))
 
     owes_gets_data = [["Member", "Amount"]]
-    for member, due in total_dues.items():
-        status = "Gets" if due > 0 else "Owes"
-        owes_gets_data.append(
-            [f"{member} {status}", f"৳{abs(due):.2f}"])
+    for due in dues_summary:
+        due = due.lstrip('😎 ')
+        member, status, amount = due.split(" ")
+        owes_gets_data.append([f"{member} {status}", amount])
 
     owes_gets_table = Table(owes_gets_data, colWidths=[3*inch, 3*inch])
     owes_gets_table.hAlign = 'LEFT'
