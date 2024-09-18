@@ -11,6 +11,7 @@ from commands.members_command import members_command
 from commands.settle_up import settle_up, settle_up_callback
 from commands.show_dues import show_dues
 from commands.show_expenses import show_expenses
+from commands.generate_report import generate_report
 
 load_dotenv()
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -31,6 +32,8 @@ def main() -> None:
     application.add_handler(CommandHandler("status", show_dues))
     application.add_handler(CommandHandler("settleup", settle_up))
     application.add_handler(CallbackQueryHandler(settle_up_callback, pattern='^(confirm|cancel)_settleup$'))
+    application.add_handler(CommandHandler("report", generate_report))
+    
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == '__main__':

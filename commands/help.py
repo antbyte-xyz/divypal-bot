@@ -25,4 +25,6 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "\n"
         "/settleup to settle up\n"
         "    <b>CAUTION</b>: All you expenses will be deleted"
+        "\n"
+        "/report to generate a report of all expenses"
     )
