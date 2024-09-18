@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from data import load_members, save_members
+from utils.data import load_members, save_members
 
 
 async def members_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

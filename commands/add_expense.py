@@ -3,7 +3,7 @@ from datetime import datetime
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from data import load_expenses, load_members, save_expenses, save_members
+from utils.data import load_expenses, load_members, save_expenses, save_members
 from models.Expense import Expense
 
 

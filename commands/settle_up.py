@@ -1,6 +1,6 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
-from data import load_expenses, save_expenses
+from utils.data import load_expenses, save_expenses
 
 async def settle_up(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle the /settleup command to clear all expenses."""

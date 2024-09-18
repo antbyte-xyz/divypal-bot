@@ -3,7 +3,7 @@ from collections import defaultdict
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from data import load_expenses
+from utils.data import load_expenses
 
 
 async def show_expenses(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
