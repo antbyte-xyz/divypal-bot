@@ -8,6 +8,9 @@ from reportlab.lib.units import inch
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.platypus import Spacer
 from utils.calculate_dues import calculate_dues
+from reportlab.lib.colors import Color
+from reportlab.pdfgen import canvas
+import PyPDF2
 
 
 def generate_expense_report(expenses):
@@ -21,7 +24,7 @@ def generate_expense_report(expenses):
     # Title
     title_style = styles['Title']
     title_style.alignment = TA_CENTER
-    elements.append(Paragraph("Expense Report<br/>", title_style))
+    elements.append(Paragraph("Expense Report", title_style))
 
     date_style = styles['Normal']
     date_style.alignment = TA_CENTER
@@ -100,7 +103,7 @@ def generate_expense_report(expenses):
 
     summary_data = [
         ["Total Spent", f"৳{total_spent:.2f}"],
-        ["Number of Users", str(num_users)],
+        ["Number of Members", str(num_users)],
         ["Per Head Amount", f"৳{per_head_amount:.2f}"]
     ]
 
@@ -163,5 +166,31 @@ def generate_expense_report(expenses):
     elements.append(owes_gets_table)
 
     doc.build(elements)
+
+    watermark_buffer = BytesIO()
+    watermark_canvas = canvas.Canvas(watermark_buffer, pagesize=letter)
+    watermark_canvas.setFont("Helvetica", 60)
+    watermark_canvas.setFillColor(Color(0.4, 0.6, 0.8, alpha=0.3))
+    watermark_canvas.saveState()
+    watermark_canvas.translate(inch * 4, inch * 5)
+    watermark_canvas.rotate(45)
+    watermark_canvas.drawCentredString(0, 0, "antbyte.xyz")
+    watermark_canvas.restoreState()
+    watermark_canvas.save()
+
     buffer.seek(0)
-    return buffer
+    watermark_buffer.seek(0)
+
+    pdf_reader = PyPDF2.PdfReader(buffer)
+    watermark_reader = PyPDF2.PdfReader(watermark_buffer)
+    pdf_writer = PyPDF2.PdfWriter()
+
+    for page in pdf_reader.pages:
+        page.merge_page(watermark_reader.pages[0])
+        pdf_writer.add_page(page)
+
+    final_buffer = BytesIO()
+    pdf_writer.write(final_buffer)
+    final_buffer.seek(0)
+
+    return final_buffer
