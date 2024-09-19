@@ -31,7 +31,7 @@ def generate_expense_report(expenses):
     date_style.fontName = 'Helvetica'
     date_style.fontSize = 12
     start_date = min(expenses[username][0].date for username in expenses)
-    end_date = max(expenses[username][0].date for username in expenses)
+    end_date = max(expenses[username][-1].date for username in expenses)
     elements.append(Paragraph(
         f"<i>({start_date.strftime('%d %b, %Y')} - {end_date.strftime('%d %b, %Y')})</i>", date_style))
 
