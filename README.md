@@ -48,3 +48,4 @@ Start a chat with the bot on Telegram and use the following commands:
 - `/addx <item> <price>` - Add a new expense
 - `/showx` - View current balances for all members
 - `/settleup @username` - Settle up balances with other members
+- `/report` - Generate a PDF file with all the expenses and status of each members.
