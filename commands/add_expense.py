@@ -1,3 +1,4 @@
+import pytz
 from datetime import datetime
 
 from telegram import Update
@@ -30,7 +31,9 @@ async def add_expense(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
             item, price = line.rsplit(' ', 1)
             price = float(price)
             total_amount += price
-            expense_details.append(Expense(item, price, datetime.now(), members.copy()))
+            tz = pytz.timezone('Asia/Dhaka')
+            expense_details.append(
+                Expense(item, price, datetime.now(tz), members.copy()))
         except ValueError:
             await update.message.reply_text(f"Invalid format for '{line}'. Please use 'item price'.")
             return
