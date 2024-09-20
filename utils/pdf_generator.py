@@ -29,11 +29,11 @@ def generate_expense_report(expenses):
     date_style = styles['Normal']
     date_style.alignment = TA_CENTER
     date_style.fontName = 'Helvetica'
-    date_style.fontSize = 12
+    date_style.fontSize = 10
     start_date = min(expenses[username][0].date for username in expenses)
     end_date = max(expenses[username][-1].date for username in expenses)
     elements.append(Paragraph(
-        f"<i>({start_date.strftime('%d %b, %Y')} - {end_date.strftime('%d %b, %Y')})</i>", date_style))
+        f"({start_date.strftime('%d %b, %Y')} - {end_date.strftime('%d %b, %Y')})", date_style))
 
     elements.append(Spacer(1, 0.1*inch))
 

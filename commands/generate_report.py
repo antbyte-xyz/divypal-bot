@@ -1,7 +1,10 @@
+from pytz import timezone
+from datetime import datetime
 from telegram import Update
 from telegram.ext import ContextTypes
 from utils.data import load_expenses
 from utils.pdf_generator import generate_expense_report
+
 
 async def generate_report(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Generate and send a PDF report of all expenses."""
@@ -14,6 +17,6 @@ async def generate_report(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
     await update.message.reply_document(
         document=pdf_buffer,
-        filename="expense_report.pdf",
+        filename=f"expense_report_{datetime.now(timezone('Asia/Dhaka')).strftime('%d %b, %Y')}.pdf",
         caption="Here's the expense report."
     )
